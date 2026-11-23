@@ -1,8 +1,6 @@
 name: Publish birthday map
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -24,10 +22,10 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Download and verify static website
         env:
-          BUILD_URL: https://github.com/${{ github.repository }}/releases/download/atlas-build-v1/atlas-site.zip
+          BUILD_URL: https://github.com/${{ github.repository }}/releases/download/atlas-build-v2/atlas-site-v2.zip
         run: |
           curl --fail --location --silent --show-error --retry 3 --output site.zip "$BUILD_URL"
-          sha256sum --check <<< '50005b763ff3f9e9b402a5a3f28d4ffa0a3a11659f0f93c5e120241e9e696b37  site.zip'
+          sha256sum --check <<< '504d576f4e5b4227aec4fe5d04f558fe4f95fb532d46bb4f74f134a8fd3a1af2  site.zip'
           unzip -q site.zip -d site
       - uses: actions/upload-pages-artifact@v4
         with:
